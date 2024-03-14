@@ -7,68 +7,52 @@
 
 import Foundation
 
-let answer = 456
-var inputVal = Int()
-var result: Bool = false
+var gameTime: Int = 1 //게임한 횟수
+var gameRec: GameRecord = GameRecord()
 
-
-func intToArray (_ number: Int) -> [Int] {
-    var num = number
-    var result = [Int]()
-    while num >= 1 {
-        result.append(num % 10)
-        num /= 10
+class GameRecord {
+    var gameCount: [Int] = []
+    
+    func showGameRecord() {
+        var time = 1
+        print("< 게임 기록 보기 >")
+        for game in gameCount {
+            print("\(time)번째 게임 : 시도 횟수 - \(game)")
+            time += 1
+        }
     }
-    return result
+    
+    func appendGameCount(_ newGameCount: Int) {
+        gameCount.append(newGameCount)
+    }
 }
 
-print("<게임을 시작합니다>")
-
-repeat{
-    print("숫자를 입력하세요")
+func welcome() {
+    print("=============================")
+    print("환영합니다! 원하시는 번호를 입력해주세요")
+    print("1. 게임 시작하기  2. 게임 기록 보기  3. 종료하기")
     
-    var ball: Int = 0
-    var strike: Int = 0
-    var answerIndex: Int = 0
-    var inputIndex: Int = 0
+    let userInput = Int(readLine()!)!
     
-    var userInput = readLine()
-    if let number = userInput {
-        if let IntFromInput = Int(number){
-            inputVal = IntFromInput
-        } else {
-            print("올바르지 않은 입력값입니다")
-        }
-    } else {
-        print("올바르지 않은 입력값입니다")
-    }
-
-    var answerList = intToArray(answer)
-    var inputList = intToArray(inputVal)
-
-    for answer in answerList{
-        inputIndex = 0
-        for input in inputList{
-            if answer == input {
-                if answerIndex == inputIndex {
-                    ball += 1
-                } else {
-                    strike += 1
-                }
-            }
-            inputIndex += 1
-        }
-        answerIndex += 1
-    }
-
-    if ball == 3 {
-        result = true
-        print("정답입니다!")
-    } else {
-        print("strike \(strike), ball \(ball)")
+    switch userInput {
+    case 1:
+        gameRec.appendGameCount(startGame(gameTime))
+        gameTime += 1
+        welcome()
+    case 2:
+        gameRec.showGameRecord()
+        welcome()
+    case 3:
+        print("< 숫자 야구 게임을 종료합니다 >")
+    default:
+        print("올바른 숫자를 입력해주세요!")
+            
     }
     
-}while result == false
+}
+
+
+
 
 
 
