@@ -10,6 +10,8 @@ import Foundation
 var gameTime: Int = 1 //게임한 횟수
 var gameRec: GameRecord = GameRecord()
 
+welcome()
+
 class GameRecord {
     var gameCount: [Int] = []
     
