@@ -32,7 +32,7 @@ repeat{
     var answerIndex: Int = 0
     var inputIndex: Int = 0
     
-    var userInput = readLine()
+    let userInput = readLine()
     if let number = userInput {
         if let IntFromInput = Int(number){
             inputVal = IntFromInput
@@ -43,8 +43,8 @@ repeat{
         print("올바르지 않은 입력값입니다")
     }
 
-    var answerList = intToArray(answer)
-    var inputList = intToArray(inputVal)
+    let answerList = intToArray(answer)
+    let inputList = intToArray(inputVal)
 
     for answer in answerList{
         inputIndex = 0
